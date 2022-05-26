@@ -2,43 +2,67 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenu;
+    public static bool GameIsPaused = false;
+    public GameObject Timer;
+    public GameObject Enemy1;
+    public GameObject Enemy2;
+    public GameObject YouFailed;
+    public GameObject YouPassed;
+    public TextMeshProUGUI keys;
 
-    //public static bool isPaused=false;
+    void Update()
+    {
+        if (YouPassed.activeSelf == false && YouFailed.activeSelf == false)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (!GameIsPaused)
+                {
+                    PauseGame();
+                    GameIsPaused = true;
+                    Enemy1.SetActive(false);
+                    Enemy2.SetActive(false);
+                    keys.enabled=false;
+                }
+                else
+                {
+                    ResumeGame();
+                    GameIsPaused = false;
+                    Enemy1.SetActive(true);
+                    Enemy2.SetActive(true);
+                    keys.enabled = true;
+                }
+            }
+        }
+    }
 
     void Start()
     {
         pauseMenu.SetActive(false);
+        GameIsPaused = false;
     }
-
-    /*void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (isPaused)
-                ResumeGame();
-            else PauseGame();
-        }
-    }*/
 
     public void PauseGame()
     {
         pauseMenu.SetActive(true);
-        Time.timeScale = 0f;
+        Timer.SetActive(false);
+ 
     }
 
     public void ResumeGame()
     {
         pauseMenu.SetActive(false);
-        Time.timeScale = 1f;
+        Timer.SetActive(true);
+
     }
 
     public void GoToMainMenu()
     {
-        Time.timeScale = 1f;
         SceneManager.LoadScene("Menu");
     }
 

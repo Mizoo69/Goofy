@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class SoundManager : MonoBehaviour
 {
-    [SerializeField] Text On;
-    [SerializeField] Text Off;
+    [SerializeField] TextMeshProUGUI MusicText;
     private bool muted = true;
 
     // Start is called before the first frame update
@@ -22,7 +22,6 @@ public class SoundManager : MonoBehaviour
         {
             Load();
         }
-        UpdateButtonText();
         AudioListener.pause = muted;
     }
 
@@ -41,22 +40,6 @@ public class SoundManager : MonoBehaviour
         }
 
         Save();
-        UpdateButtonText();
-    }
-
-    private void UpdateButtonText()
-    {
-        if(muted == false)
-        {
-            On.enabled = true;
-            Off.enabled = false;
-        }
-
-        else
-        {
-            On.enabled = false;
-            Off.enabled = true;
-        }
     }
 
     private void Load ()

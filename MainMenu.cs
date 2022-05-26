@@ -8,13 +8,7 @@ public class MainMenu : MonoBehaviour
     //Start new game button
     public void PlayGame ()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
-
-    //Information button
-    public void SeeInfo ()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+        SceneManager.LoadScene("Level_1");
     }
 
     public void Quit ()
