@@ -1,1 +1,1 @@
-# Goofy
+# University project
